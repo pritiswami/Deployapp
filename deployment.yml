@@ -16,8 +16,8 @@ spec:
         app: javawebapp
     spec:
       containers:
-        - name: javawebappcontainer
-          image: deployapp  # Correct image name and tag
+        - name: javawebapp
+          image: pritiswami123/deployapp  # Correct image name and tag
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -30,7 +30,7 @@ spec:
   selector:
     app: javawebapp
   ports:
-    - protocol: TCP
+    - protocol: "TCP"
       port: 9191      # The port your Spring Boot app listens on
       targetPort: 9191
       nodePort: 30080  # The port on the host to access the app externally
