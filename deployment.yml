@@ -33,8 +33,10 @@ spec:
     - protocol: "TCP"
       port: 9191      # The port your Spring Boot app listens on
       targetPort: 9191
-      nodePort: 30080  # The port on the host to access the app externally
+      nodePort: 30080  # The port on the host to access the app
   type: NodePort
+
+
 
 
 
