@@ -1,43 +1,36 @@
----
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment # Kubernetes resource kind we are creating
 metadata:
-  name: javawebapp
-  namespace: demojavawebapp
-  labels:
-    app: javawebapp
+  name: DeployApp
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: javawebapp
+      app: DeployApp
+  replicas: 2 # Number of replicas that will be created for this deployment
   template:
     metadata:
       labels:
-        app: javawebapp
+        app: DeployApp
     spec:
       containers:
-        - name: javawebapp
-          image: pritiswami123/deployapp:latest  # Correct image name and tag
-          imagePullPolicy: always
+        - name: DeployApp
+          image: pritiswami123/deployapp  # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 8080 # The port that the container is running on in the cluster
+
+
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: javawebappservice
+
+apiVersion: v1 # Kubernetes API version
+kind: Service # Kubernetes resource kind we are creating
+metadata: # Metadata of the resource kind we are creating
+  name: DeployApp-k8ssvc
 spec:
   selector:
-    app: javawebapp
+    app: DeployApp
   ports:
     - protocol: "TCP"
-      port: 9191      # The port your Spring Boot app listens on
-      targetPort: 9191
-      nodePort: 30080  # The port on the host to access the app
-  type: NodePort
-
-
-
-
-
+      port: 9191 # The port that the service is running on in the cluster
+      targetPort: 9191 # The port exposed by the service
+  type: NodePort # type of the service.
