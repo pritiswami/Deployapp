@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
         - name: javawebapp
-          image: pritiswami123/deployapp  # Correct image name and tag
-          imagePullPolicy: IfNotPresent
+          image: pritiswami123/deployapp:latest  # Correct image name and tag
+          imagePullPolicy: always
           ports:
             - containerPort: 8080
 ---
